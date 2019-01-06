@@ -13,8 +13,8 @@ class UserController extends Controller{
         echo"\n";
         //var_dump($user);
     }
-    public function actionUser(){
-        \Yii::$app->db
+	public function actionUserCreate() {
+		 \Yii::$app->db
         ->createCommand()
         ->insert('user', [
           'email'      => 'test4@example.com',
@@ -26,6 +26,12 @@ class UserController extends Controller{
 
         ])
        ->execute();
+	}
+    public function actionUser(){
+       $user = \Yii::$app->db
+	->createCommand('SELECT * FROM user WHERE id = 1;')
+	->queryOne();
+	print_r($user);
     }
     public function actionUserUpdate(){
         \Yii::$app->db
